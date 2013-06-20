@@ -2202,7 +2202,7 @@ void ClientEnvironment::step(float dtime)
 	/*
 		A quick draft of lava damage
 	*/
-	if(m_lava_hurt_interval.step(dtime, 1.0))
+	if(lplayer->hp && m_lava_hurt_interval.step(dtime, 1.0))
 	{
 		v3f pf = lplayer->getPosition();
 		
@@ -2231,7 +2231,7 @@ void ClientEnvironment::step(float dtime)
 	/*
 		Drowning
 	*/
-	if(m_drowning_interval.step(dtime, 2.0))
+	if(lplayer->hp && m_drowning_interval.step(dtime, 2.0))
 	{
 		v3f pf = lplayer->getPosition();
 
@@ -2251,7 +2251,7 @@ void ClientEnvironment::step(float dtime)
 			damageLocalPlayer(1, true);
 		}
 	}
-	if(m_breathing_interval.step(dtime, 0.5))
+	if(lplayer->hp && m_breathing_interval.step(dtime, 0.5))
 	{
 		v3f pf = lplayer->getPosition();
 
