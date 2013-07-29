@@ -11,13 +11,16 @@ void main(void)
 
 	float alpha = col.a;
 
+	// exp1 =~ 2.718282;
+	float exp1 = 2.718282;
+
 	// apply lighting
 	col *= gl_Color;
 	col = col * col; // SRGB -> Linear
 	col *= 1.8;
-	col.r = 1.0 - exp(1.0 - col.r) / exp(1.0);
-	col.g = 1.0 - exp(1.0 - col.g) / exp(1.0);
-	col.b = 1.0 - exp(1.0 - col.b) / exp(1.0);
+	col.r = 1.0 - exp(1.0 - col.r) / exp1;
+	col.g = 1.0 - exp(1.0 - col.g) / exp1;
+	col.b = 1.0 - exp(1.0 - col.b) / exp1;
 	col = sqrt(col); // Linear -> SRGB
 
 	// apply "fog"
