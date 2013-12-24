@@ -1432,6 +1432,7 @@ minetest.item_drop(itemstack, dropper, pos)
 ^ Drop the item
 minetest.item_eat(hp_change, replace_with_item)
 ^ Eat the item. replace_with_item can be nil.
+^ Returns nil in creative
 
 Defaults for the on_punch and on_dig node definition callbacks:
 minetest.node_punch(pos, node, puncher)

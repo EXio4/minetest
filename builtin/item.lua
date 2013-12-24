@@ -339,12 +339,19 @@ function minetest.item_drop(itemstack, dropper, pos)
 end
 
 function minetest.item_eat(hp_change, replace_with_item)
-	return function(itemstack, user, pointed_thing)  -- closure
-		if itemstack:take_item() ~= nil then
-			user:set_hp(user:get_hp() + hp_change)
-			itemstack:add_item(replace_with_item) -- note: replace_with_item is optional
+	if minetest.setting_getbool("creative_mode") then
+		--return function(itemstack, user, pointed_thing)
+		--	return itemstack
+		--end
+		return nil
+	else
+		return function(itemstack, user, pointed_thing)  -- closure
+			if itemstack:take_item() ~= nil then
+				user:set_hp(user:get_hp() + hp_change)
+				itemstack:add_item(replace_with_item) -- note: replace_with_item is optional
+			end
+			return itemstack
 		end
-		return itemstack
 	end
 end
 
